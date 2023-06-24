@@ -1,0 +1,23 @@
+package sist0621;
+
+public class ExForWhile_10 {
+	
+	public static void test1() {
+		//for문으로 1~5까지 합구하기
+		int sum=0;
+		
+		for(int i=1;i<=5;i++)
+		{
+			sum+=i;
+		}
+		System.out.println("총 합계는 "+sum);
+	}
+	
+	//main메서드는	 클래스의 시작과 끝을 담당
+	public static void main(String[] args) {
+		
+		test1(); //위에 만든 메서드를 호
+
+	}
+
+}

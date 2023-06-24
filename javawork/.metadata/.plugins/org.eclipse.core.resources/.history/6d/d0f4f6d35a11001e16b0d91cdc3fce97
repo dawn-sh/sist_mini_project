@@ -1,0 +1,26 @@
+package sist0622;
+
+public class test {
+
+	public static void main(String[] args) {
+		
+		while(true)
+		{
+			int col=5,row=1;
+			String spc=" ";
+			
+			while(row<=5)
+			{
+				while(col<=row-1)
+				{
+					if(col==5)
+					{
+						
+					}
+				}
+			}
+		}
+
+	}
+
+}

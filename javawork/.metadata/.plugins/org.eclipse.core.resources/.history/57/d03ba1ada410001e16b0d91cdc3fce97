@@ -1,0 +1,45 @@
+package sist0622;
+
+import java.util.Scanner;
+
+public class QuizForWhile_02 {
+	
+	public static void quiz1() {
+		//점수를 반복해서 입력하면 합계를 구하시오
+		//1~100이 아니면 제외(continue)
+		//0을 입력하면 프로그램 종료
+		Scanner sc=new Scanner(System.in);
+		
+		int i=1,sum=0;
+		int n;
+		
+		
+		while(true)
+		{
+			System.out.println("점수를 입력하세요");
+			n=sc.nextInt();
+			
+			if(n==0)
+				break;
+			
+			if(n>100 || n<1)
+				continue;
+				
+			sum+=n;
+			n++;
+		}
+			System.out.print("합계는 "+sum);
+	}
+	public static void quiz2() {
+		
+	}
+	public static void quiz3() {
+	
+	}
+
+	public static void main(String[] args) {
+		quiz1();
+
+	}
+
+}

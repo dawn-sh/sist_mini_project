@@ -1,0 +1,25 @@
+package sist0622;
+
+import java.util.Scanner;
+
+public class ScanGugu_05 {
+
+	public static void main(String[] args) {
+		//단을 입력해서 해당단 출력하기
+		//0을 입력시 종료
+		Scanner sc=new Scanner(System.in);
+		Spring dan;
+		int n=1;
+		
+		for(;n<=9;n++)
+		{
+			System.out.println(dan+"x"+n+"="+dan*n);
+			dan=Integer.parseInt(sc.nextLine());
+			
+			if(Integer.parseInt(dan)==0)
+				break;
+		}
+
+	}
+
+}

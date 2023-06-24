@@ -1,0 +1,19 @@
+package sist0621;
+
+import java.util.Scanner;
+
+public class ExWhile_02 {
+
+	public static void main(String[] args) {
+		//while문으로 1부터 10까지출력
+		
+		int n=0;
+		
+		while(n<10)
+		{
+			n++;
+			System.out.printf("%4d",n);
+		}
+	}
+
+}
