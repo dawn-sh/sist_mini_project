@@ -1,0 +1,15 @@
+package day0627;
+
+public class QuizMain_09 {
+
+	public static void main(String[] args) {
+
+		Quiz_09 in1=new Quiz_09();
+		
+		System.out.println("[쇼핑목록]");
+		in1.setList("손선풍기");
+		in1.setPrice(25000);
+		
+	}
+
+}

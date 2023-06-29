@@ -1,0 +1,17 @@
+package day0629;
+
+import day0629_1.SuperObj;
+
+//자식 클래스에 Subject를 붙임
+					   //extends 클래스명-상속받겠다
+public class SubObj_03 extends SuperObj{
+	
+	//부모 클래스에 있던걸 그대로 가져옴
+	public SubObj_03(String name, int age, String addr) {
+		super(name, age);
+	}
+
+	//뭘 넣어도 상관없다(private,디폴트(instance)) - 메인용 클래스가 같은 패키지에 있기 때문
+	String addr;
+
+}
