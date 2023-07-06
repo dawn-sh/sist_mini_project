@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="day0627/|day0703/|day0629/|day0623/" kind="src" path="sist0615/work/javawork/SistJavaWork/src"/>
+	<classpathentry kind="src" path="sist0615/work/javawork/SistJavaWork/src/day0623"/>
+	<classpathentry kind="src" path="sist0615/work/javawork/SistJavaWork/src/day0627"/>
+	<classpathentry kind="src" path="sist0615/work/javawork/SistJavaWork/src/day0629"/>
+	<classpathentry kind="src" path="sist0615/work/javawork/SistJavaWork/src/day0703"/>
+	<classpathentry kind="output" path="sist0615/work/javawork/SistJavaWork/bin"/>
+</classpath>
