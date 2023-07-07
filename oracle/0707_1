@@ -1,0 +1,269 @@
+--복습문제
+--Q1.emp에서 job종류별로 직업군을 한번씩만 출력해보세요
+select distinct job 직업군 from emp;
+
+--Q2.emp테이블에서 사원명이 A나 S로 시작하는 사람만 출력해보세요
+select * from emp;
+select empno 사원번호,ename 사원명 from emp where ename like 'A%' or ename like 'S%';
+
+--Q3.emp에서 deptno가 10인부서만 출력하시오 (사원명 부서번호)
+select ename 사원명, deptno 부서번호 from emp where deptno=10;
+
+--Q4.emp에서 급여(sal)가 평균보다 더 높은 사람만 사원명 급여를 출력하시오
+select ename 사원명, sal 급여 from emp where sal>(select avg(sal) from emp);
+
+--Q5.SCOTT 급여와 동일하거나 더 많이 받는 사람의 사원명 급여 출력
+select ename 사원명, sal 급여 from emp where sal>=(select sal from emp where ename='SCOTT');
+
+--Q6.emp에서 hiredate에서 월이 5월인 사람만 사원명 입사일자 출력하시오
+select ename 사원명,hiredate 입사일자 from emp where to_char(hiredate,'mm')='05';
+
+
+
+
+--7월7일
+--1.테이블 생성
+--primary key는 기본키를 의미 not null+unique를 의미한다
+
+--test테이블 컬럼명 데이터유형(자리수) 
+create table test(num number(5) primary key,
+name varchar2(20),score number(6,2),birth date);
+
+desc test; --테이블 구조보기
+
+
+--test에 전체데이터 insert
+insert into test values(1,'손석수',67.2,'1995-12-23');
+--test에 일부데이터 insert
+insert into test (num,name) values(2,'강호동');
+
+--insert 에러
+--num에 primarykey가 있어서 같은 자리에 insert 하려고하면 오류
+--무결성 제약 조건(TJDGUS.SYS_C008353)에 위배
+insert into test values(4,'이영애',68.78,'1989-12-12');
+
+--sysdate 현재날짜 의미
+insert into test values(5,'이효리',88.96,sysdate);
+
+--alter 구조변경
+--나이를 저장할 컬럼 추가, 무조건 null로 추가
+--ALTER TABLE 테이블명 ADD 추가할컬러명 테이터타입;
+
+alter table test add age number(5);
+
+--주소를 저장할 컬럼을 추가하는데 초기값을 강남구 라고 지정
+alter table test add addr varchar2(30) default '강남구';
+
+--SQL 오류: ORA-12899: "TJDGUS"."TEST"."ADDR" 열에 대한 값이 너무 큼(실제: 155, 최대값: 30)
+--insert into test values(4,'이영애',68.78,'1989-12-12',22,'대한민국     서울시 ㅁㄴㅇㅎㅁㄴㅎㄴㅇㅎㅁㅇㅎㄴㅎㅁㄴㅇㅎㄴㅁㅎㅇㅎㄴㅎ 3ㅎㅁㄴㅇㅎㅁㄴㅇㅁㄴㅇㅎㅁㄴㅇㅎ');
+--주소 저장컬럼 30=>50
+--ALTER TABLE 테이블명 MODIFY 컬럼명 데이터타입;
+
+alter table test modify addr varchar2(50);
+
+--age 타입을 문자열(10)으로 변경하고 초기값을 20으로 설정하기
+--기존 null은 그대로 있고 새로 insert하는 것 부터 초기값 들어감
+alter table test modify age varchar2(10) default '20';
+
+insert into test (num,name) values(10,'강호동');
+
+--num의 오름차순 출력
+select * from test order by num;
+
+select * from test order by name desc;
+
+--drop 구조적 삭제
+--ALTER TABLE 테이블명 DROP COLUMN 삭제할컬럼명;
+--age라는 컬럼을 삭제
+alter table test drop column age;
+--addr삭제
+alter table test drop column addr;
+
+
+--컬럼명 변경
+--ALTER TALBE 테이블명 RENAME COLUMN OLD컬럼명 TO NEW컬럼명;
+--score==>jumsu
+alter table test rename column score to jumsu;
+--birth==>birthday
+alter table test rename column birth to birthday;
+
+--테이블 삭제 test
+drop table test;
+
+
+
+
+
+
+
+
+
+--시퀀스 생성
+--시퀀스 기본으로 생성,1부터 1씩 즈가하는 시퀀스 생성됨
+--cache 할당/ no cache 할당x
+create sequence seq1; --sequence 기본
+
+
+--전체시퀀스 확인
+select * from seq;
+
+--다음 시퀀스값을 발생 콘솔에 출력
+select seq1.nextval from dual; --1씩 증가하는 시퀀스를 만들어서 실행마다 다음 값이 1씩 추가
+
+--현재 마지막 발생한 시퀀스값
+select seq1.currval from dual;
+
+--seq1삭제
+drop sequence seq1;
+
+--10부터 5씩 증가하는 시퀀스생성-cache값 없애기
+create sequence seq2 start with 10 increment by 5 nocache;
+
+--시퀀스 발생
+select seq2.nextval from dual;
+
+--시퀀스2 삭제
+drop sequence seq2;
+
+--seq1 : 시작값:5 증가값:2 끝값:30 캐시:no,cycle:y
+create sequence seq1 start with 5 increment by 2 maxvalue 30 nocache cycle;
+--seq2 : 시작값:1 증가값:1 캐시:n --기본이 시작1 증가1 이라 안써도 적용됨
+create sequence seq2 nocache;
+--seq3 : 시작값:1 증가값:2 캐시:n
+create sequence seq3 start with 1 increment by 2 nocache;
+
+--출력
+select seq1.nextval,seq2.nextval,seq3.nextval from dual;
+
+--전체삭제
+drop sequence seq1;
+drop sequence seq2;
+drop sequence seq3;
+
+
+--------------------------------시퀀스 1개생성, 테이블 생성
+create sequence seq_start nocache;
+
+create table personinfo (num number(5) primary key,
+name varchar2(20),
+job varchar2(30),
+gender varchar2(20),
+age number(5),
+hp varchar2(20),
+birthday date);
+
+desc personinfo;
+
+--birthday==>ipsaday
+alter table personinfo rename column birthday to ipsaday;
+
+--insert
+insert into personinfo values (seq_start.nextval,'박병주','엔지니어','남자',22,'010-222-3333','2023-02-11');
+insert into personinfo values (seq_start.nextval,'이성신','교사','여자',25,'010-212-3463','2021-03-11');
+insert into personinfo values (seq_start.nextval,'임형준','연예인','남자',31,'010-312-2353','2020-02-19');
+insert into personinfo values (seq_start.nextval,'최성현','연예인','남자',27,'010-2312-6433','2019-09-27');
+insert into personinfo values (seq_start.nextval,'진현규','교사','남자',22,'010-2362-3453','2018-04-16');
+insert into personinfo values (seq_start.nextval,'최진평','엔지니어','남자',26,'010-7537-8675','2015-04-18');
+insert into personinfo values (seq_start.nextval,'김선범','프로그래머','남자',24,'010-6795-3475','2022-02-13');
+insert into personinfo values (seq_start.nextval,'윤호석','교사','남자',22,'010-2542-3462','2023-02-11');
+insert into personinfo values (seq_start.nextval,'송주영','프로그래머','남자',21,'010-6965-3565','2023-02-11');
+insert into personinfo values (seq_start.nextval,'최희찬','프로그래머','남자',29,'010-6960-0987','2023-02-11');
+commit;--최종저장
+
+--최종인원확인
+select count(*) from personinfo;
+--조회연습
+select * from personinfo order by name asc;
+select * from personinfo order by age desc;
+select * from personinfo order by 5 asc; --컬럼 번호로 age 정렬
+
+select * from personinfo order by gender,age desc; --남자 여자로 나뉘어서 남자 역순 여자 역순 따로 정렬되어 나옴
+select * from personinfo order by gender,name;
+
+select job from personinfo;
+select distinct job from personinfo;
+
+--성이 박씨인 사람만
+select * from personinfo where name like '박%';
+--이름이 두번째 글자가 진인 사람
+select * from personinfo where name like '_진%';
+
+--핸드폰 마지막 자리가 3333인사람
+select * from personinfo where hp like '%3333';
+
+--입사일자가 3월인 사람을 출력
+select * from personinfo where to_char(ipsaday,'mm')='03';
+
+--입사일자가 2023년인 사람을 출력
+select * from personinfo where to_char(ipsaday,'yyyy')='2023'; 
+
+--나이가 20~30사이 출력
+select * from personinfo where age between 20 and 30;
+select * from personinfo where age>=20 and age<=30;
+
+--직업이 연예인 이거나 프로그래머인사람
+select * from personinfo where job in('연예인','프로그래머');
+select * from personinfo where job='연예인' or job='프로그래머';
+
+--직업이 연예인 이거나 프로그래머가 아닌 사람
+select * from personinfo where job not in('연예인','프로그래머');
+
+--평균나이,소수점 한자리로 구하기
+select round(avg(age),1) from personinfo;
+
+--내용수정(update)
+--UPDATE 테이블명 SET 컬럼1='변경할데이터' WHERE 컬럼2='데이터값';
+update personinfo set job='간호사',age=35; --조건이 없으면 모든데이터 변경
+--잘 못 수정한 데이터 원래대로 돌리기/ commit 하면 수정 불가
+rollback;
+
+--3번 직업 나이 수정하기,조건이 없으면 모든 데이터가 수정된다
+update personinfo set job='간호사',age=35 where num=3;
+
+--김씨이면서 프로그래머인 사람의 젠더를 여자로 수정하기
+update personinfo set gender='여자' where name like '김%' and job='프로그래머';
+
+--num이 8번인 사람의 직업을 프로그래머로 입사일을 2000-12-25로 수정하시오
+update personinfo set job='프로그래머',ipsaday='2000-12-25' where num=8;
+
+commit;
+
+
+
+--삭제
+--DELETE FROM 테이블명; /조건이 없으면 모두 삭제 / commit안하면 롤백가능
+--5번만 삭제 / seqence num은 삭제해도 번호가 올라가지 않고 중복만 안됨
+delete from personinfo where num=5;
+
+--여자 중에서 나이가 25세 이상만 모두 삭제
+delete from personinfo where age>=25 and gender='여자';
+
+--핸드폰을 ***-***-****수정
+update personinfo set hp='***-***-****';
+
+rollback;
+
+select * from personinfo;
+
+--테이블삭제;
+--시퀀스 삭제;
+drop table personinfo;
+drop sequence seq_start;
+
+
+
+
+
+--dept에서 30번 부서를 시애틀로 변경해주세요
+select * from dept;
+update dept set loc='SEATTLE' where deptno=30;
+--emp테이블 Totalsal열을 하나 추가하시오(number(20으로 줄 것)
+select * from emp;
+alter table emp add Totalsal number(20);
+--emp테이블 Totsal에 sal과 comm을 더한 가격을 수정하시오
+update emp set totalsal=sal+nvl(comm,0);
+--emp에서 WARD 삭제하시오
+delete from emp where ename='WARD';
+--product테이블에서 100번을 쵸코파이로 수정
+select * from product;
+update product set p_name='쵸코파이' where p_code=100;

@@ -1,0 +1,159 @@
+--where -> group by -> having -> order by
+
+--Group by
+--professor에서 학과별로 교수들의 평균급여를 출력하시오
+select deptno 학과,avg(pay) "평균 급여"
+from professor
+group by deptno;
+
+--select절에 사용된 그룹함수 이외의 컬럼이나 표현식은 반드시 group by에 사용되어야함
+--professor에서 직급별 평균 보너스 출력
+select * from professor;
+select position 직급, avg(nvl(bonus,0)) "평균 보너스" from professor group by position;
+
+--학과별 직급별로 교수들의 평균급여
+select deptno 학과,position 직급,avg(pay) 급여 
+from professor 
+group by deptno, position;
+
+--student에서 학년별 최고키와 최고몸무게 출력
+select grade 학년,max(height) 최고신장,max(weight) 최고몸무게 from student group by grade order by grade asc;
+
+--교수의 직급별 총급여와 최고보너스를 구하시오
+select * from professor;
+select position 직급,sum(pay) 급여,max(nvl(bonus,0)) from professor group by position;
+
+
+--emp에서 동일한 직업끼리 사원수
+--직무 사원수
+select * from emp;
+select job 직무,count(job) 사원수 from emp group by job;
+
+
+--Having절_조건 주고 검색하기_반드시 group by 뒤에 사용...
+--where 과 having의 차이는 일반 조건은 where 그룹조건은 having 사용
+--where절은 그룹함수의 비교조건으로 쓸 수 없다
+--emp에서 평균 급여가 2000이상인 부서의 부서번호와 평균급여를 구하시오
+select deptno 부서번호,avg(sal) 평균급여
+from emp 
+group by deptno
+having avg(sal)>2000;
+
+--professor에서 평균급여가 300이상인 학과의 학과번호와 평균급여를 구하시오
+select * from professor;
+select deptno 학과번호, avg(pay) 평균급여 from professor 
+where deptno not in(101) 
+group by deptno 
+having avg(pay)>=300 
+order by deptno desc;
+
+--emp에서 job별로 sal의 평균급여를 구하시오
+select job 직급, round(avg(sal),1) from emp group by job;
+
+--professor에서 직급별 총급여를 구하시오
+select position 직급, sum(pay) 총급여 from professor group by position;
+
+--emp에서 직업별 인원수 최대급여 최소급여 출력하세요(job의 오름차순)
+select * from emp;
+select job 직업,count(job) 인원수,max(sal) 최대급여, min(sal) 최소급여 from emp group by job order by job;
+
+--emp에서 입사년도 그룹별로 출력(입사년도,인원수,급여평균(소수점없이)_입시년도 오름차순)
+select to_char(hiredate,'yyyy') 입사년도,count(*) 인원수, round(avg(sal),0) 급여평균
+from emp 
+group by to_char(hiredate,'yyyy') 
+order by to_char(hiredate,'yyyy');
+
+--Rollup함수 / 맨 밑에 전체 총계
+--자동으로 소계/합계 구해주는 함수
+--group by 절에 주어진 조건으로 소계값을 구해준다
+select deptno 학과번호,position 직위, sum(pay) 총급여
+from professor
+group by position, rollup(deptno);
+
+
+select deptno 학과번호,position 직위, sum(pay) 총급여
+from professor
+group by deptno, rollup(position);
+
+
+--count
+select position,count(*),sum(pay)
+from professor
+group by rollup(position);
+
+
+--cube 함수 / 맨 위에 전체 총계
+--rollup처럼 각 소계에 전체총계까지 구해준다
+select deptno,count(*),sum(pay)
+from professor
+group by cube(deptno,position);
+
+--오늘의 총 복습
+--Q1. emp에서 평균급여가 2000이상인 부서의 부서번호와 평균급여를 구하시오
+select * from emp;
+select deptno 부서번호,avg(sal) 평균급여 from emp group by deptno having avg(sal)>=2000;
+
+--Q2. emp에서 deptno별 인원수는?
+select deptno 부서번호,count(*) 인원수 from emp group by deptno;
+
+--Q3. emp에서 job별 인원수를 구하시오 (단 인원이 2명이상인곳만 구할 것)
+select job 직업, count(*) 인원수 from emp group by job having count(job)>=2;
+
+--Q4. emp에서 job별 급여합계를 구하는데(president는 제외할 것) 급여합계가 5000이상만 구하시고 급여합계가 높은 것부터 출력하시오
+select * from emp;
+select job 직업, sum(sal) 급여합계 from emp 
+where job not in('PRESIDENT') --PRESIDENT 제외
+group by job --job 그룹별로
+having sum(sal)>=5000 --급여합계가 5000이상
+order by sum(sal) desc; --급여합계 내림차순
+
+
+
+
+
+
+
+
+
+--제약조건
+--테이블생성
+create table sawon(num number(5) CONSTRAINT sawon_pk_num primary key,
+name varchar2(20),
+gender varchar2(10),
+buseo varchar2(20) CONSTRAINT sawon_ck_buseo check(buseo in('홍보부','인사부','교육부')),--check만 와도 되고 constraint는 제약을 걸었다는 표시를 준것
+pay number(10) default 2000000);
+
+--sequence생성
+create sequence seq_sawon nocache;
+
+--데이터 10정도 insert
+--체크 제약조건(TJDGUS.SAWON_CK_BUSEO)이 위배되었습니다//buseo에 check 제약을 걸어서 다른 부서가 못 옴
+--insert into sawon values(seq_sawon.nextval,'이영미','여자','게임개발부',3500000);
+insert into sawon values(seq_sawon.nextval,'이영미','여자','교육부',3500000);
+insert into sawon values(seq_sawon.nextval,'이신성','남자','인사부',2500000);
+insert into sawon values(seq_sawon.nextval,'최성현','남자','홍보부',2700000);
+insert into sawon values(seq_sawon.nextval,'임형준','남자','교육부',3000000);
+insert into sawon values(seq_sawon.nextval,'송주영','여자','인사부',2900000);
+insert into sawon values(seq_sawon.nextval,'이영미','여자','홍보부',2200000);
+insert into sawon values(seq_sawon.nextval,'박주영','남자','교육부',2000000);
+insert into sawon values(seq_sawon.nextval,'김순영','여자','인사부',2100000);
+insert into sawon values(seq_sawon.nextval,'윤호석','남자','교육부',3500000);
+insert into sawon values(seq_sawon.nextval,'박병주','남자','홍보부',2500000);
+commit;
+
+--부서별 인원수와 최고 급여,최저 급여 조회
+select buseo 부서,count(*) 인원수,max(pay) 최고급여,min(pay) 최저급여 from sawon group by buseo;
+
+--위의 쿼리문에서 최고급여,최저급여에 화폐단위 붙이고 3자리 컴마도 나오게 해주세요
+select to_char(max(pay),'l9,999,999') 최고금액,to_char(min(pay),'l9,999,999') 최저금액 from sawon;
+
+--성별 인원수와 평균급여를 출력(인원수 뒤에 명이라고 나오도록...)
+select gender 성별,count(*)||'명' 인원수, avg(pay) 평균급여 from sawon group by gender;
+
+--부서별 인원수와 평균급여를 구하되 인원이 4명 이상인 경우만 출력
+select buseo 부서, count(*) 인원수,avg(pay) 평균급여 from sawon group by buseo having count(*)>=4;
+    
+
+
+
+select * from sawon;
