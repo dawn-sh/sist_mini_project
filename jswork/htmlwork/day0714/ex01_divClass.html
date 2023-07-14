@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 400px;
+            height: 250px;
+            border: 1px solid gray;
+            margin-bottom: 20px;
+            margin-left: 50px;
+            background-size: 50px 70px;
+        }
+
+        div.a{
+            /* flower_ani를 div 사이즈로 다 넣어줌 */
+            /* default가 repeat */
+            /* backgroung-image: url("경로") */
+            background-image: url("../flower_ani/s1.JPG");
+        }
+
+        div.b{
+            background-image: url("../flower_ani/s2.JPG");
+            background-repeat: repeat-x;
+        }
+
+        div.c{
+            background-image: url("../flower_ani/s3.JPG");
+            background-repeat: repeat-y;
+        }
+
+        div.d{
+            background-image: url(../flower_ani/s4.JPG);
+            background-repeat: no-repeat;
+            /* 가로 세로 size설정 가능 */
+            background-size: 100px 100px;
+            /* 위치 지정 가능 */
+            background-position: right bottom;
+        }
+
+        /* 범용클래스 즉 모든태그에서 사용 가능 */
+        .bg{
+            background-color: cadetblue;
+        }
+
+        /* 전체화면에 적용 */
+        body{
+            background-image: url("../Food/1.jpg");
+            background-repeat: no-repeat;
+            background-position: 500px 200px; /* x축 y축 */
+        }
+    </style>
+</head>
+<body>
+    <div class="a"></div>
+    <div class="b"></div>
+    <div class="c bg"></div> <!-- 클래스 2개이상 공백으로 구분 -->
+    <div class="d bg"></div>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tb1{
+            width: 400px;
+            border: 3px solid gray;
+            border-collapse: collapse;
+        }
+
+        /* 제목 사이 줄 주기 */
+        .tb1 td,.tb1 th{
+            border: 1px solid gray;
+        }
+
+        /* tr td는 내용 */
+        .tb1 tr td:hover{
+            background-color: cadetblue;
+            color: white;
+        }
+
+        /* tr th는 제목 */
+        .tb1 tr th{
+            background-color: aquamarine;
+        }
+
+        .tb2{
+            border: 3px solid black;
+            border-collapse: collapse;
+        }
+
+        .tb2 tr th{
+            width: 100px;
+            height: 25px;
+            border: 2px solid black;
+        }
+
+        .tb2 tr td{
+            width: 100px;
+            height: 25px;
+        }
+
+        .tb2 .tr2 td{
+            width: 100px;
+            height: 25px;
+            text-align: center;
+            border: 2px solid black;
+        }
+
+        .tb3{
+            border: 3px solid black;
+            border-collapse: collapse;
+        }
+
+        .tb3 tr th{
+            border: 2px solid black;
+            width: 100px;
+            height: 50px;
+            background-color: blueviolet;
+        }
+
+        .tb3 tr th:hover{
+            background-color: aquamarine;
+        }
+
+        .tb3 tr td{
+            width: 100px;
+            height: 50px;
+            border: 2px solid black;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 간단한 선 주기 border로 너비 width로 -->
+    <table border="1" style="width: 300px;">
+        <!-- 제목에 자주 쓰임 -->
+        <caption><b>[표 1]</b></caption>
+        <!-- 하나의 행에 색주려면 tr에 준다 -->
+        <tr height="50" bgcolor="orange">
+            <td align="center">하나</td>
+            <!-- valign 세로 조절 -->
+            <td align="right" valign="top">둘</td>
+            <td valign="bottom" bgcolor="gray">셋</td>
+        </tr>
+        <tr height="50" align="center">
+            <td colspan="3">세칸합침</td>
+        </tr>
+    </table>
+
+
+
+    <hr>
+
+
+
+    <table class="tb1">
+        <caption><b>[표 2]</b></caption>
+        <tr>
+            <th>사진</th>
+            <th>이름</th>
+            <th>핸드폰</th>
+            <th>주소</th>
+        </tr>
+
+        <tr>
+            <!-- 가로 x칸을 합칠때 첫줄만 합쳐주면 밑에서는 첫줄 생략해서 사용-->
+            <td rowspan="4">
+                <img src="../flower_ani/f14.png">
+            </td>
+            <td>성신이</td>
+            <td>010-222</td>
+            <td>서울시</td>
+        </tr>
+
+        <tr>
+            <td>성현이</td>
+            <td>010-555</td>
+            <td>서울시</td>
+        </tr>
+
+        <tr>
+            <td>민규</td>
+            <td>010-555</td>
+            <td>서울시</td>
+        </tr>
+
+        <tr>
+            <td>병주</td>
+            <td>010-555</td>
+            <td>서울시</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <table class="tb2">
+        <caption><b>문제</b></caption>
+        <tr>
+            <th rowspan="2">1</th>
+            <th colspan="2">2</th>
+            <th>3</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="center">4</td>
+        </tr>
+        <tr class="tr2">
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <table class="tb3">
+        <caption><b>문제2</b></caption>
+        <tr>
+            <th>이름</th>
+            <th>사진</th>
+            <th>신상정보</th>
+        </tr>
+        <tr>
+            <td rowspan="5">아이유</td>
+            <td rowspan="5">
+                <img src="./다운로드.jpeg" onmouseover="this.src='./다운로드 (1).jpeg'"
+                onmouseout="this.src='./다운로드.jpeg'"></td>
+            <td>나이: 31세</td>
+        </tr>
+        <tr>
+            <td>데뷔: 2008년</td>
+        </tr>
+        <tr>
+            <td>종교: 무종교</td>
+        </tr>
+        <tr>
+            <td>부캐: 이지금</td>
+        </tr>
+        <tr>
+            <td>구독자 수: 854만명</td>
+        </tr>
+    </table>
+</body>
+</html>

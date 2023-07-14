@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myimg1{
+            width: 200px;
+            height: 150px;
+            border-radius: 30px;
+            border: 2px solid green;
+        }
+
+        /*
+        /* 마우스 올릴때 */
+        /* #myimg1:hover{
+            background-image: url("../flower_ani/f12.png");
+        }
+
+        /* 클릭할때 */
+        /* #myimg1:active{
+            background-image: url("../flower_ani/f14.png");
+        } */
+    </style>
+</head>
+<body>
+    <!-- over out 합쳐서 hover == enter leave도 같은 기능 -->
+    <img src="../flower_ani/f14.png" title="그라탕" id="myimg1"
+    onmouseover="this.src='../flower_ani/f14.png'"
+    onmouseout="this.src='../flower_ani/f11.png'">
+    <!-- "" 안에는 ''/ '' 안에 "" 으로 구분 -->
+
+    <img src="../html_img/1.png" 
+    onmouseenter="this.src='../html_img/2.png'"
+    onmouseleave="this.src='../html_img/1.png'">
+</body>
+</html>
