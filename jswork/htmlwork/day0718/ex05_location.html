@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- form에 네임을 줘서 네임의네임의네임의... value값 찾을 수 있음 -->
+    <form name="myform">
+        <!-- onchange="location=document.이름.이름.value값" -->
+        <select name="url" onchange="location=document.myform.url.value">
+            <option value="http://www.naver.com">네이버</option>
+            <option value="http://www.nate.com">네이트</option>
+            <option value="http://www.google.com">구글</option>
+        </select>
+    </form>
+</body>
+</html>
