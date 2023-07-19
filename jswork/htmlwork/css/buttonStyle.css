@@ -13,19 +13,23 @@ body{
 .btn-cadetblue{
     background-color: cadetblue;
     color: white;
+    font-size: 12pt;
 }
 
 .btn-purple{
     background-color: purple;
     color: white;
+    font-size: 12pt;
 }
 
 .btn-black{
     background-color: black;
     color: white;
+    font-size: 12pt;
 }
 
 .btn-orange{
     background-color: orange;
-    color: antiquewhite;
+    color: black;
+    font-size: 12pt;
 }
