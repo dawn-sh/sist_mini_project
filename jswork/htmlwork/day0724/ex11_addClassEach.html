@@ -52,8 +52,8 @@
         $(function(){
             //적용버튼 누르면 모든 div에 인덱스별로 클래스가 적용된다
             $("button:eq(0)").click(function(){
-                $("div").each(function(idx){
-                    $(this).addClass("hello_"+idx);
+                $("div").each(function(idx){ //index,(element)
+                    $(this).addClass("hello_"+idx); 
                 });
             }); 
             
@@ -62,6 +62,7 @@
                 $("div").each(function(idx){
                     $(this).removeClass("hello_"+idx);
                 });
+                // each문 안써도 $("div").removeClass(); 모두 제거
             }); 
         })
 
