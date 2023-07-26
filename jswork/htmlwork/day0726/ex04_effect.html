@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Diphylleia&family=Dokdo&family=Nanum+Brush+Script&family=Nanum+Gothic+Coding&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        #toy ul li img{
+            width: 150px;
+        }
+
+        li{
+            list-style: none;
+            float: left;
+            cursor: pointer;
+        }
+
+        #logo{
+            position: absolute;
+            left: 480px;
+            top: 200px;
+        }
+        #toy{
+            margin: 0 auto;
+            width: 1000px;
+            margin-top: 400px;
+        }
+    </style>
+    <script>
+        $(function(){
+            /*
+            $("img:first").click(function(){
+                
+                $("img:gt(0)").fadeTo(3000,0.5, function(){
+
+                    $("img:gt(0)").css("opacity","1").css("border","3px dotted orange");
+                });
+            })
+
+            $("img:eq(1)").click(function(){
+                
+                $("img:eq(1)").slideUp();
+            });
+
+            $("img:eq(2)").click(function(){
+                
+                $("img:eq(2)").fadeOut();
+            });
+
+            $("img:eq(3)").click(function(){
+                
+                $("img:eq(3)").hide();
+            });
+
+            $("img:eq(4)").click(function(){
+                
+                $("img:eq(4)").slideUp();
+            });
+
+            $("img:eq(5)").click(function(){
+                
+                $("img:eq(5)").fadeOut();
+            });
+
+            $("img:eq(6)").click(function(){
+                
+                $("img:eq(6)").hide();
+            });
+            */
+            
+            $("li img").click(function(){
+
+                $(this).fadeOut();
+            });
+
+            $("#logo").click(function(){
+                $("li img").fadeIn().css('border','3px dashed cadetblue');
+            })
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <!-- 제목용 이미지 -->
+        <div id="logo"><img src="../logoImg/logo.png"></div>
+        <div id="toy">
+            <ul>
+                <li><img src="../logoImg/toy01.png"></li>
+                <li><img src="../logoImg/toy02.png"></li>
+                <li><img src="../logoImg/toy03.png"></li>
+                <li><img src="../logoImg/toy04.png"></li>
+                <li><img src="../logoImg/toy05.png"></li>
+                <li><img src="../logoImg/toy06.png"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
