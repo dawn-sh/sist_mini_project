@@ -1,0 +1,5 @@
+[
+	{"name":"son","hobby":"study","hp":"010-1234-5678"},
+	{"name":"lee","hobby":"game","hp":"010-1111-2222","addr":"jeju"},
+	{"name":"kim","hobby":"travel","hp":"010-3333-4444","addr":"busan"}
+]
