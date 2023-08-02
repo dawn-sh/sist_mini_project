@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Diphylleia&family=Dokdo&family=Nanum+Brush+Script&family=Nanum+Gothic+Coding&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<button type="button" class="btn btn-info" id="btn">Quiz json 출력</button>
+	<div id="show">출력해주세요</div>
+	
+	<script>
+		$("#btn").click(function(){
+			
+			$("#show").empty();
+			
+			var s="";
+			
+			$.ajax({
+				
+				type:"get",
+				url:"Quiz_friendToJson.jsp",
+				dataType:"json",
+				success:function(data){
+					
+					s+="<table class='table table-bordered' style='width: 400px'>";
+					s+="<tr>";
+					s+="<th>순서</th><th>이름</th><th>번호</th><th>주소</th><th>가입일</th>";
+					s+="</tr>";
+					
+					$.each(data,function(i,ele){
+						
+						s+="<tr>";
+						s+="<td>"+ele.num+"</td>";
+						s+="<td>"+ele.fname+"</td>";
+						s+="<td>"+ele.fhp+"</td>";
+						s+="<td>"+ele.faddr+"</td>";
+						s+="<td>"+ele.gaipday+"</td>";
+						s+="</tr>";
+					})
+					s+="</table>"
+					
+					$("#show").html(s);
+				}
+			})
+		});
+	</script>
+</body>
+</html>
