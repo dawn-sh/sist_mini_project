@@ -1,5 +1,5 @@
-<%@page import="model.sinsang.SinsangDto"%>
-<%@page import="model.sinsang.SinsangDao"%>
+<%@page import="model.mymall.MallDao"%>
+<%@page import="model.mymall.MallDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,12 +13,26 @@
 </head>
 <body>
 <%
-	//삭제메서드 호출
-	//getParameter로 얻어온 num은 list.jsp의 삭제 버튼에 있는 onclick에 ?옆에 있는 num
-	String num=request.getParameter("num");
-	SinsangDao dao=new SinsangDao();
-	dao.deleteSinsang(num);
-	//리스트로 이동
+	//한글엔코딩
+	//insertAction에만 추가 하면됨
+	request.setCharacterEncoding("utf-8");
+
+
+	
+	String name=request.getParameter("name");
+	String photo=request.getParameter("photo");
+	String price=request.getParameter("price");
+	String ipgoday=request.getParameter("ipgoday");
+	
+	MallDto dto=new MallDto();
+	dto.setSangpum(name);
+	dto.setPhoto(photo);
+	dto.setPrice(price);
+	dto.setIpgoday(ipgoday);
+	
+	MallDao dao=new MallDao();
+	dao.insertMall(dto);
+	
 	response.sendRedirect("list.jsp");
 %>
 </body>

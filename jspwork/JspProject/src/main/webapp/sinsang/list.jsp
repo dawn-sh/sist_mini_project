@@ -39,6 +39,7 @@ onclick="location.href='insertForm.jsp'">데이터 추가</button>
 		for(int i=0;i<list.size();i++)
 		{
 			//리스트에서 인덱스 값을 얻어서 dto(db에 담긴 값들)로 불러와야함
+			//list는 우리가 만든 컬렉션(Vector)
 			SinsangDto dto=list.get(i);
 			%>
 			<%-- 출력 --%>
@@ -52,7 +53,7 @@ onclick="location.href='insertForm.jsp'">데이터 추가</button>
 				<%-- 편집 / 수정 삭제 버튼 --%>
 				<td>
 					<button type="button" class="btn btn-info btn-sm"
-					onclick="location.href=''">수정</button>
+					onclick="location.href='updateForm.jsp?num=<%=dto.getNum() %>'">수정</button>
 					
 					<%-- 시퀀스 번호가 있어야하는데 location.href에 delete가 심어져야 삭제됨 
 					 	 delete.jsp? ?(멤버값을 이어주기 위해 사용) / ?는 이어진다는 뜻 그곳에 num(시퀀스)값을 dto에서 얻어와 삭제--%>

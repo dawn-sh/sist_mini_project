@@ -14,7 +14,7 @@
 <body>
 <%-- 폼을 처리하는 곳(값을 넘겨줄 곳) --%>
 	<%
-		//폼에 있는 name,addr
+		//폼에 입력한 name,addr
 		String name=request.getParameter("name");
 		String addr=request.getParameter("addr");
 		
@@ -26,7 +26,7 @@
 		dto.setAddr(addr);
 		
 		
-		// insert메소드 전달 / 인자값인 dto를 호출하기 위해 생성
+		// dao 생성해서 insert메소드 생성 그 메소드에 dto값을 넣어줌 / 인자값인 dto를 호출하기 위해 생성
 		SinsangDao dao=new SinsangDao();
 		// 입력한 값을 dao에 넣어줌
 		dao.insertSinsang(dto);

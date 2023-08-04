@@ -1,5 +1,4 @@
-<%@page import="model.sinsang.SinsangDto"%>
-<%@page import="model.sinsang.SinsangDao"%>
+<%@page import="model.intro.IntroDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,12 +12,10 @@
 </head>
 <body>
 <%
-	//삭제메서드 호출
-	//getParameter로 얻어온 num은 list.jsp의 삭제 버튼에 있는 onclick에 ?옆에 있는 num
 	String num=request.getParameter("num");
-	SinsangDao dao=new SinsangDao();
-	dao.deleteSinsang(num);
-	//리스트로 이동
+	IntroDao dao=new IntroDao();
+	dao.deleteIntro(num);
+	
 	response.sendRedirect("list.jsp");
 %>
 </body>

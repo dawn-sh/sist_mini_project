@@ -1,5 +1,5 @@
-<%@page import="model.sinsang.SinsangDto"%>
-<%@page import="model.sinsang.SinsangDao"%>
+<%@page import="model.myteam.TeamDao"%>
+<%@page import="model.myteam.TeamDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,12 +13,21 @@
 </head>
 <body>
 <%
-	//삭제메서드 호출
-	//getParameter로 얻어온 num은 list.jsp의 삭제 버튼에 있는 onclick에 ?옆에 있는 num
-	String num=request.getParameter("num");
-	SinsangDao dao=new SinsangDao();
-	dao.deleteSinsang(num);
-	//리스트로 이동
+	request.setCharacterEncoding("utf-8");
+	
+	String name=request.getParameter("name");
+	String driver=request.getParameter("driver");
+	String addr=request.getParameter("addr");
+	
+	TeamDto dto=new TeamDto();
+	dto.setName(name);
+	//체크박스 유무를 값 대입
+	dto.setDriver(driver==null?"없음":"있음");
+	dto.setAddr(addr);
+	
+	TeamDao dao=new TeamDao();
+	dao.insertMyTeam(dto);
+	
 	response.sendRedirect("list.jsp");
 %>
 </body>
