@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Diphylleia&family=Dokdo&family=Nanum+Brush+Script&family=Nanum+Gothic+Coding&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div style="margin: 50px;">
+	<b>사진선택: </b>
+	<select id="selImg">
+		<option value="1">샌드위치</option>
+		<option value="2">닭꼬치</option>
+		<option value="3">육계장</option>
+		<option value="11">망고샤벳</option>
+		<option value="12">순두부라면</option>
+	</select>
+	
+	<br><br>
+	<input type="text" id="like1">
+	<input type="text" id="like2">
+	<input type="text" id="like3">
+	
+	<button type="button" id="btn1">데이터전송</button>
+	<br>
+	<div id="show" class="alert alert-info"></div>
+	
+	<script>
+		$("#btn1").click(function(){
+			
+			var photono=$("#selImg").val();
+			var photoname=$("#selImg option:selected").text();
+			var like1=$("#like1").val();
+			var like2=$("#like2").val();
+			var like3=$("#like3").val();
+			
+			var s="photono="+photono+"&photoname="+photoname+"&like1="+like1+"&like2="+like2+"&like3="+like3;
+			//alert(s);
+			
+			$.ajax({
+				
+				type:"get",
+				url:"ex03_receive.jsp",
+				dataType:"json",
+				data:s,
+				success:function(res){
+					
+					var out="";
+					out+="상품사진:"+res.photo+"<br>";
+					out+="상품이름:"+res.photoname+"<br>";
+					out+="첫번째칸:"+res.like1+"<br>";
+					out+="두번째칸:"+res.like2+"<br>";
+					out+="세번째칸:"+res.like3+"<br>";
+					out+="총점:"+res.sum+"<br>";
+					out+="평균:"+res.avg+"<br>";
+					
+					$("#show").append(out);
+					
+				}
+			})
+		})
+	</script>
+</div>
+</body>
+</html>

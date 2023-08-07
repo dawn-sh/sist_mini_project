@@ -52,6 +52,7 @@
 				</tr>
 				
 				<tr>
+					<%-- 가상의 폴더를 만들어야 넣어줄 수 있음 --%>
 					<th>업로드 파일명</th>
 					<td><img src="../save/<%=uploadFileName%>"></td>
 				</tr>

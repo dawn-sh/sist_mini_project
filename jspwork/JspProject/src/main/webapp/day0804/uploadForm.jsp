@@ -10,8 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="uploadAction.jsp" method="post"
-	enctype="multipart/form-data">
+	<%-- cos.jar/method=post/enctype="multipart/form-data" 는 업로드 도우미 역할로 필요한 파일 --%>
+	<%-- pc에 있는 다른 이미지를 가져와서 업로드 하는 것 / enctype은 fileupload에서 필수 --%>
+	<form action="uploadAction.jsp" method="post" enctype="multipart/form-data">
 		<table class="table table-bordered" style="width: 500px;">
 			<tr>
 				<th width="100">이름</th>
