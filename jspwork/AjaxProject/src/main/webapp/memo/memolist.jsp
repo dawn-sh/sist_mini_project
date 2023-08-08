@@ -15,7 +15,7 @@
 	//json형태 배열로 만들어줌
 	JSONArray arr=new JSONArray();
 	//arr에 먼저 size 보내보기
-	//sql에 적은 데이터 잘 들어갔는지 확인 하는 작업 1이 뜸
+	//sql에 적은 데이터 잘 들어갔는지 확인 하는 작업 1(테이블 안에 행 갯수)이 뜸
 	/*JSONObject size=new JSONObject();
 	size.put("size", list.size());
 	arr.add(size);*/
