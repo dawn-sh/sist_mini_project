@@ -93,10 +93,8 @@
  		var question=prompt("비밀번호 입력해주세요");
  		
  		//비밀번호가 문자열이면 인식이 안됨/취소버튼 아예 작동이 안됨
- 		/* if(question==pass)
- 		{ */
-    	if (!isNaN(question) && question === pass)
-    	{
+ 		if(question==pass)
+ 		{
  			location.href='deleteAction.jsp?num='+num;
  		}
  		else
