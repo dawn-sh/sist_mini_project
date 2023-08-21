@@ -1,3 +1,4 @@
+<%@page import="com.mysql.cj.jdbc.ha.BestResponseTimeBalanceStrategy"%>
 <%@page import="member.model.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,20 +13,15 @@
 </head>
 <body>
 <%
-	String id=(String)session.getAttribute("id");
+	//db삭제
+	String num=request.getParameter("num");
 	MemberDao dao=new MemberDao();
-	String name=dao.getName(id);
+	dao.deleteMember(num);
+	
+	session.removeAttribute("loginok");
+	session.removeAttribute("savechk");
+	
+	response.sendRedirect("memberList.jsp");
 %>
-
-<br><br>
-<h4><b><%=name %>님이 로그인 하셨습니다 다들 박수~~~~~</b></h4>
-
-<input type="button" value="로그아웃" class="btn btn-outline-danger"
-onclick="location.href='logoutAction.jsp'">
-<input type="button" value="회원목록" class="btn btn-outline-success"
-onclick="location.href='memberList.jsp'"> <%-- 다른 폴더일 경우 상위폴더 갔다가 해당 파일이름 경로로 작성 --%>
-
-<br><br>
-<img alt="" src="../image/b9.png">
 </body>
 </html>

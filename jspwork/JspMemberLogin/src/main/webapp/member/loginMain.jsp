@@ -19,7 +19,7 @@
 	<%}
 	else
 	{%>
-		<jsp:include page="logoutForm.jsp"/>
+		<jsp:include page="memberList.jsp"/>
 	<%}
 %>
 </body>
